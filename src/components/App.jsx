@@ -1,23 +1,24 @@
 import React, { useState } from "react";
 import Todotext from "./Todotext";
+import Input from "./Input";
 
 function App() {
   const [getdata, setdata] = useState("");
   const [allData, setOnList] = useState([]);
 
 
-  function collectInputData(event) {
+  function collectInputData(val) {
     // console.log(event.target.value);
-    const newValue = event.target.value;
-    setdata(newValue);
+    // const newValue = val
+    setdata(val);
   }
 
-  function addOnList() {
+  function addOnList(val) {
 
     setOnList((prevData) => {
-      return [...prevData, getdata]
+      return [...prevData, val]
     });
-    console.log(allData)
+    // console.log(allData)
     setdata("");
   }
 
@@ -35,11 +36,10 @@ function App() {
         <h1>To-Do List</h1>
       </div>
       <div className="form">
-        <input onChange={collectInputData} type="text" value={getdata} />
-        <button onClick={addOnList}>
-          <span>Add</span>
-        </button>
+        <Input f1 = {addOnList} f2 = {collectInputData} data = {getdata}
+        />
       </div>
+
       <div>
         <ul>
           {allData.map((item, index) => (
