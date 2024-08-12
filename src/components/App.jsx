@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Todotext from "./Todotext";
 
 function App() {
   const [getdata, setdata] = useState("");
@@ -20,6 +21,13 @@ function App() {
     setdata("");
   }
 
+  function deleteData(id) {
+    setOnList((prevData) => {
+      return prevData.filter((item, index) => {
+        return index !== id
+      })
+    });
+  }
 
   return (
     <div className="container">
@@ -35,10 +43,12 @@ function App() {
       <div>
         <ul>
           {allData.map((item, index) => (
-            <li key={index}>{item}</li>
+            <Todotext key={index} id={index} text={item} onChecked={deleteData}
+            />
           ))}
         </ul>
       </div>
+
     </div>
   );
 }
